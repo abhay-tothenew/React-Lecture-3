@@ -5,17 +5,19 @@ const Login = () => {
   const { lightTheme, handleLogin, formData, setFormData } =
     useContext(MyContext);
 
+  // Handle Input Change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Handle Form Submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (formData.username === "" || formData.email === "") {
       alert("Please fill in all details!");
     } else {
-      handleLogin();
+      handleLogin(); // Trigger login to navigate to Details page
     }
   };
 
@@ -37,6 +39,24 @@ const Login = () => {
       width: "300px",
       textAlign: "center",
     },
+    input: {
+      width: "90%",
+      padding: "10px",
+      margin: "10px 0",
+      border: "1px solid #ccc",
+      borderRadius: "5px",
+    },
+    button: {
+      backgroundColor: "#007BFF",
+      color: "white",
+      border: "none",
+      padding: "10px",
+      width: "100%",
+      cursor: "pointer",
+      borderRadius: "5px",
+      fontSize: "16px",
+      transition: "0.3s",
+    },
     buttonHover: {
       backgroundColor: "#0056b3",
     },
@@ -55,13 +75,7 @@ const Login = () => {
           type="text"
           name="username"
           placeholder="Username"
-          style={{
-            width: "90%",
-            padding: "10px",
-            margin: "10px 0",
-            border: "1px solid #ccc",
-            borderRadius: "5px",
-          }}
+          style={styles.input}
           value={formData.username}
           onChange={handleChange}
           required
@@ -70,30 +84,14 @@ const Login = () => {
           type="email"
           name="email"
           placeholder="Email"
-          style={{
-            width: "90%",
-            padding: "10px",
-            margin: "10px 0",
-            border: "1px solid #ccc",
-            borderRadius: "5px",
-          }}
+          style={styles.input}
           value={formData.email}
           onChange={handleChange}
           required
         />
         <button
           type="submit"
-          style={{
-            backgroundColor: "#007BFF",
-            color: "white",
-            border: "none",
-            padding: "10px",
-            width: "100%",
-            cursor: "pointer",
-            borderRadius: "5px",
-            fontSize: "16px",
-            transition: "0.3s",
-          }}
+          style={styles.button}
           onMouseEnter={(e) =>
             (e.target.style.backgroundColor =
               styles.buttonHover.backgroundColor)
